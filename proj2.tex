@@ -1,0 +1,125 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[total={180mm,250mm},left=15mm,top=25mm]{geometry}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{hyperref}
+
+\newtheorem{definition}{Definice}
+\newtheorem{sentence}{Věta}
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+{\Huge
+\textsc{Fakulta informačních technologií\\[0,4em]Vysoké učení technické v Brně}}\\
+\vspace{\stretch{0.382}}
+{\LARGE Typografie a publikování – 2. projekt\\[0,3em]Sazba dokumentů a matematických výrazů}\\
+\vspace{\stretch{0.618}}
+\end{center}
+{\Large 2018 \hfill
+Karel Hanák (xhanak34)}
+\end{titlepage}
+\begin{twocolumn}
+\section*{Úvod}\label{pg:1}
+V této úloze si vyzkoušíme sazbu titulní strany, matematic\-kých vzorců, prostředí a dalších textových struktur obvyklých pro technicky zaměřené texty (například rovnice (\ref{eq:1}) nebo Definice \ref{def:1} na straně \pageref{pg:1}). Rovněž si vyzkoušíme používání odkazů \verb|\ref |a \verb|\pageref|.
+
+Na titulní straně je využito sázení nadpisu podle optického středu s využitím zlatého řezu. Tento postup byl probírán na přednášce. Dále je použito odřádkování se zadanou relativní velikostí 0.4em a 0.3em\\
+
+\section{Matematický text}
+Nejprve se podíváme na sázení matematických symbolů a~výrazů v plynulém textu včetně sazby definic a vět s využitím balíku \texttt{amsthm}. Rovněž použijeme poznámku pod čarou s použitím příkazu \verb|\footnote|. Někdy je vhodné použít konstrukci \verb|${}$|, která říká, že matematický text nemá být zalomen.
+
+\theoremstyle{definition}
+\begin{definition}\label{def:1}
+{\normalfont Turingův stroj} (TS) je definován jako šestice tvaru $M = (Q, \Sigma, \Gamma , \delta, q\textsubscript{0}, q\textsubscript{F})$, kde:
+
+\begin{itemize}
+\item $Q$ je konečná množina {\normalfont vnitřních (řídicích) stavů,}
+\item $\Sigma$ je konečná množina symbolů nazývaná vstupní {\normalfont abeceda, $\Delta \notin \Sigma$,}
+\item $\Gamma$ je konečná množina symbolů, $\Sigma \subset \Gamma, \Delta \in \Gamma$, nazývaná {\normalfont pásková abeceda,}
+\item {$\delta : (Q \backslash \{q_F\})\times \Gamma \rightarrow Q \times (\Gamma \cup {L,R})$, kde $L,R \notin \Gamma$ je parciální {\normalfont přechodová funkce,}}
+\item q\textsubscript{0} je {\normalfont počáteční stav,} $q\textsubscript{0} \in Q$ a
+\item q\textsubscript{F} je {\normalfont koncový stav,} $q\textsubscript{F} \in Q$.
+\end{itemize}
+\end{definition}
+
+Symbol $\Delta$ značí tzv. \emph{blank} (prázdný symbol), který se vyskytuje na místech pásky, která nebyla ještě použita (může ale být na pásku zapsán i později).
+
+\emph{Konfigurace pásky} se sklýdý z nekonečného řetězce, který reprezentuje obsah pásky a pozice hlavy na tomto řetězci. Jedná se o prvek množiny $ \{\gamma\Delta\textsuperscript{$\omega$} \mid \delta\in\Gamma\textsuperscript{*}\}\times\mathbb{N}$.\footnote{Pro libovolnou abecedu $\Sigma$ je $\Sigma\textsuperscript{$\omega$}$ množina všech nekonečných řetězců nad $\Sigma$, tj. nekonečných posloupností symbolů ze $\Sigma$. Pro připomenutí: $\Sigma\textsuperscript{*}$ je množina všech konečných řetězců nad $\Sigma$.}
+\emph{Konfiguraci pásky} obvykle zapisujeme jako $\Delta xyz\underline{z}x\Delta$...\\(podtržení značí pozici hlavy). \emph{Konfigurace stroje} je pak dána stavem řízení a konfigurací pásky. Formálně se jedná o prvek množiny $Q\times\{\gamma\Delta\textsuperscript{$\omega$}\mid\gamma\in\Gamma\textsuperscript{*}\}\times\mathbb{N}$.
+
+\subsection{Podsekce obsahující větu a odkaz}
+
+\begin{definition}
+{\normalfont Řetězec $w$ nad abecedou $\Sigma$ je přijat TS} $M$ jestliže $M$ při aktivaci z~počáteční konfigurace pásky $\underline\Delta w\Delta...$ a počátečního stavu $q_0$ zastaví přechodem do koncového stavu $q_F$, tj. $(q_0, \Delta w \Delta^\omega, 0) \underset{M}{\overset{*}{\vdash}} (q_F, \gamma, n)$ pro nějaké $\gamma \in \Gamma^*$ a $ n \in \mathbb{N}$.
+
+Množinu $L(M) = \{ w \mid w$ je přijat TS M\}$\subseteq \Sigma^*$ nazýváme {\normalfont jazyk přijímaný TS} M.
+\end{definition}
+
+Nyní si vyzkoušíme sazbu vět a důkazů opět s použitím balíku \verb|amsthm|.
+
+\begin{sentence}
+Třída jazyků, které jsou přijímány TS, odpovídá {\normalfont rekurzivně vyčíslitelným jazykům}.
+\end{sentence}
+\begin{proof}
+V důkaze vyjdeme z Definice 1 a 2.
+\end{proof}
+
+\section{Rovnice a odkazy}
+Složitější matematické formulace sázíme mimo plynulý text. Lze umístit několik výrazů na jeden řádek, ale pak je třeba tyto vhodně oddělit, paříklad příkazem \verb|\quad|.
+\newline
+\begin{center}
+${\sqrt[i]{x^3_i}}$ \quad kde $x_i$ je $i$-té sudé číslo\quad $y^{2\cdot y_i}_i \neq y^{y^{y_i}_i}_i$
+\end{center}
+
+V rovnici (\ref{eq:1}) jsou využity tři typy závorek s různou explicitně definovanou velikostí.
+\begin{equation}\label{eq:1}
+x = \bigg\{ \Big( \big[a+b] \ast c \Big)^d \oplus 1 \bigg\} 
+\end{equation}
+\begin{center}
+$y = \lim\limits_{x \to \infty} \frac{sin^2 x + cos^2 x}{\frac{1}{\log_{10} x}}$
+\end{center}
+
+V této větě vidíme, jak vypadá implicitní vysázení li\-mity $\lim_{n \to \infty} f(n)$ v normálním odstavci textu. Podobně je to i s dalšími symboly jako $\sum^n_{i=1} 2^i$ či $\bigcup_{A\in B} A$. V případě vzorců $\lim\limits_{n \to \infty} f(n)$ a $\underset{i=1}{\overset{n}{\sum 2^i}}$ jsme si vynutili méně úspornou sazbu příkazem \verb|\limits|. \\ \\
+\begin{equation}
+\underset{a}{\overset{b}{\int}} f(x) dx = - \int_{b}^{a} g(x) dx
+\end{equation}
+\begin{equation}
+\overline{\overline{A \vee B}} \Leftrightarrow \overline{\overline{A} \wedge \overline{B}}
+\end{equation}
+
+\section{Matice}
+Pro vysázení matic se velmi často používá prostředí \verb|array| a závorky (\verb|\left|, \verb|\right|).
+\newpage
+$$\left(
+\begin{array}{c c c}
+a + b & \widehat{\xi + \omega} & \hat{\pi} \\
+\overrightarrow{a} & \overleftrightarrow{AC} & \beta
+\end{array}
+\right) = 1  \Longleftrightarrow \mathbb{Q} = \mathbb{R}$$\\
+A = $\begin{Vmatrix}
+	a_{11} & a_{12} & \cdots & a_{1n}\\
+	a_{21} & a_{22} & \cdots & a_{2n}\\
+	\vdots & \vdots & \ddots & \vdots\\
+	a_{n1} & a_{n2} & \cdots & a_{mn}
+        \end{Vmatrix} 
+= \begin{vmatrix}
+	t & u \\
+	v & w
+\end{vmatrix} = tw - uv$\\
+
+Prostředí \verb|array| lze úspěšně využít i jinde.
+$$ \binom{n}{k} = \Bigg\{ 
+\begin{array}{l l}
+\frac{n!}{k!(n-k)!} & \text{pro } 0 \leq k \leq n \\
+0 & \text{pro } k \le 0 \text{ nebo } k \ge n
+\end{array}
+$$
+\section{Závěrem}
+V případě, že budete potřebovat vyjádřit matematickou konstrukci nebo symbol a nebude se Vám dařit jej nalézt v samotném \LaTeX u, doporučuji prostudovat možnosti balíku maker \AmS-\LaTeX.
+\end{twocolumn}
+\end{document}
